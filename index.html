@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GabineteCW — Política de privacidade</title>
+<style>
+  :root { color-scheme: light dark; --texto: #1f2d27; --fundo: #fbfcfb; --suave: #5f7a70; --linha: #dfe7e3; }
+  @media (prefers-color-scheme: dark) { :root { --texto: #e6eeea; --fundo: #141a17; --suave: #9db3aa; --linha: #2a3631; } }
+  body { margin: 0; background: var(--fundo); color: var(--texto); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 720px; margin: 0 auto; padding: 40px 16px 64px; }
+  h1 { font-size: 1.6rem; margin: 0 0 4px; }
+  h2 { font-size: 1.1rem; margin: 32px 0 8px; }
+  p, li { margin: 0 0 10px; }
+  ul { padding-left: 22px; }
+  .data { color: var(--suave); margin-bottom: 28px; }
+  code { font-size: .92em; }
+  footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--linha); color: var(--suave); font-size: .9rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Política de privacidade da extensão GabineteCW</h1>
+  <p class="data">Vigente a partir de 16 de novembro de 2026 · versão 0.4.0 da extensão</p>
+
+  <p>A extensão GabineteCW é uma área de trabalho para gabinetes criminais, com a calculadora de dosimetria da pena e o editor da minuta correspondente. Esta política explica quais dados a extensão acessa e o que faz com eles.</p>
+
+  <h2>Resumo</h2>
+  <ul>
+    <li>Todos os dados ficam no navegador do próprio usuário.</li>
+    <li>A extensão não envia dados a nenhum servidor, não usa contas e não tem análise de uso, publicidade ou rastreamento.</li>
+    <li>A extensão só acessa o eProc quando o usuário clica em "Importar do eProc", e só para ler o processo que ele já tem aberto.</li>
+    <li>A extensão não escreve nada no eProc.</li>
+  </ul>
+
+  <h2>Quais dados a extensão acessa</h2>
+  <p>Ao clicar em "Importar do eProc", com um processo aberto no eProc do 1º grau do Tribunal de Justiça de Santa Catarina (<code>eproc1g.tjsc.jus.br</code>), a extensão lê:</p>
+  <ul>
+    <li>a capa do processo: número, classe, partes, idade, CPF e situação do réu;</li>
+    <li>a lista de eventos do processo;</li>
+    <li>a denúncia e as certidões de nascimento e de antecedentes criminais juntadas ao processo.</li>
+  </ul>
+  <p>Esses documentos são baixados com a sessão que o usuário já tem aberta no eProc, usando apenas os links que a própria página do processo contém. São lidos na memória do navegador e não são gravados em disco.</p>
+
+  <h2>Para que os dados são usados</h2>
+  <p>Exclusivamente para preencher o cálculo da dosimetria: nome, situação e data de nascimento do réu, data do recebimento da denúncia, capitulação, data do fato e condenações anteriores. Antes de qualquer preenchimento, a extensão mostra uma tela de conferência com cada dado e a sua origem. Nada é aplicado sem a confirmação do usuário.</p>
+
+  <h2>Onde os dados ficam e por quanto tempo</h2>
+  <p>O cálculo e a minuta ficam no armazenamento local do navegador do usuário, para que o trabalho não se perca ao fechar a aba. Esses dados permanecem até que o usuário limpe a dosimetria (botão "Limpar"), apague os dados do navegador ou remova a extensão.</p>
+
+  <h2>Compartilhamento</h2>
+  <p>A extensão não transmite, vende nem compartilha dados com terceiros. As únicas requisições de rede que ela faz para obter os dados são ao próprio eProc, a pedido do usuário.</p>
+
+  <h2>Permissões solicitadas</h2>
+  <ul>
+    <li><code>scripting</code>: executar a leitura da página do processo na aba do eProc, apenas quando o usuário clica em "Importar do eProc".</li>
+    <li>Acesso a <code>https://eproc1g.tjsc.jus.br/*</code>: localizar a aba do eProc com o processo aberto e ler o seu conteúdo com a sessão do usuário. Nenhum outro site é acessado.</li>
+  </ul>
+
+  <h2>Alterações</h2>
+  <p>Se a forma de tratar dados mudar, esta página será atualizada antes da publicação da nova versão da extensão, com a nova data de vigência.</p>
+
+  <footer>
+    <p>Contato: <a href="mailto:jfreitas@tjsc.jus.br">jfreitas@tjsc.jus.br</a></p>
+  </footer>
+</main>
+</body>
+</html>
