@@ -15,47 +15,81 @@
   ul { padding-left: 22px; }
   .data { color: var(--suave); margin-bottom: 28px; }
   code { font-size: .92em; }
+  table { width: 100%; border-collapse: collapse; margin: 0 0 14px; font-size: .95rem; }
+  th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--linha); }
+  th { color: var(--suave); font-weight: 600; }
   footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--linha); color: var(--suave); font-size: .9rem; }
 </style>
 </head>
 <body>
 <main>
   <h1>Política de privacidade da extensão GabineteCW</h1>
-  <p class="data">Vigente a partir de 16 de novembro de 2026 · versão 0.4.0 da extensão</p>
+  <p class="data">Vigente a partir de 18 de novembro de 2026 · versão 0.5.5 da extensão</p>
 
-  <p>A extensão GabineteCW é uma área de trabalho para gabinetes criminais, com a calculadora de dosimetria da pena e o editor da minuta correspondente. Esta política explica quais dados a extensão acessa e o que faz com eles.</p>
+  <p>A extensão GabineteCW é uma área de trabalho para gabinetes criminais do Tribunal de Justiça de Santa Catarina: calculadora e editor de dosimetria da pena, pauta e conferência de audiências, minutas de termos e Meta/RCM. Esta política explica quais dados a extensão acessa, onde eles ficam e por quanto tempo.</p>
+
+  <h2>Quem é o responsável</h2>
+  <p>O responsável pelo tratamento dos dados descritos aqui é Jonathan Marques de Freitas, desenvolvedor da extensão. O contato está no fim desta página.</p>
 
   <h2>Resumo</h2>
   <ul>
-    <li>Todos os dados ficam no navegador do próprio usuário.</li>
-    <li>A extensão não envia dados a nenhum servidor, não usa contas e não tem análise de uso, publicidade ou rastreamento.</li>
-    <li>A extensão só acessa o eProc quando o usuário clica em "Importar do eProc", e só para ler o processo que ele já tem aberto.</li>
-    <li>A extensão não escreve nada no eProc.</li>
+    <li>Os dados de trabalho ficam no navegador do usuário. Uma cópia dos módulos compartilhados (pauta, conferências, termos, repositório de frases e modelos, e Meta/RCM) é guardada na nuvem, <strong>cifrada no próprio navegador</strong> antes do envio.</li>
+    <li>A chave que protege essa cópia é a chave do gabinete. Ela não é enviada a nenhum servidor, e nem o desenvolvedor nem o provedor da nuvem conseguem ler o conteúdo.</li>
+    <li>Os dados das audiências somem da nuvem cerca de 15 dias depois da última gravação. A Meta/RCM e o repositório ficam até o usuário apagar ou sobrescrever.</li>
+    <li>Os dados da dosimetria ficam somente neste navegador e nunca vão para a nuvem.</li>
+    <li>Não há análise de uso, publicidade nem rastreamento, e nada é vendido ou compartilhado com terceiros.</li>
+    <li>A extensão só lê o eProc quando o usuário pede, e nunca escreve nada nele.</li>
   </ul>
 
   <h2>Quais dados a extensão acessa</h2>
-  <p>Ao clicar em "Importar do eProc", com um processo aberto no eProc do 1º grau do Tribunal de Justiça de Santa Catarina (<code>eproc1g.tjsc.jus.br</code>), a extensão lê:</p>
+  <p>Com um processo ou o Relatório de Audiências abertos no eProc do 1º grau do TJSC (<code>eproc1g.tjsc.jus.br</code>), e só quando o usuário clica em "Importar do eProc" ou em ação equivalente, a extensão lê:</p>
   <ul>
     <li>a capa do processo: número, classe, partes, idade, CPF e situação do réu;</li>
-    <li>a lista de eventos do processo;</li>
-    <li>a denúncia e as certidões de nascimento e de antecedentes criminais juntadas ao processo.</li>
+    <li>a lista de eventos, a denúncia, as certidões de nascimento e de antecedentes e as peças necessárias à conferência de audiências;</li>
+    <li>as linhas do Relatório de Audiências: processo, partes, magistrado, data e hora, tipo, situação, sala e observações.</li>
   </ul>
-  <p>Esses documentos são baixados com a sessão que o usuário já tem aberta no eProc, usando apenas os links que a própria página do processo contém. São lidos na memória do navegador e não são gravados em disco.</p>
+  <p>Esses documentos são baixados com a sessão que o usuário já tem aberta no eProc, usando apenas os links que a própria página contém, e são lidos na memória do navegador. Além disso, a extensão guarda o que o próprio usuário digita: cálculos, minutas, conferências, termos, anotações, contatos de partes e testemunhas, frases e modelos, e os dados de designação, descontos e produção da Meta/RCM.</p>
 
   <h2>Para que os dados são usados</h2>
-  <p>Exclusivamente para preencher o cálculo da dosimetria: nome, situação e data de nascimento do réu, data do recebimento da denúncia, capitulação, data do fato e condenações anteriores. Antes de qualquer preenchimento, a extensão mostra uma tela de conferência com cada dado e a sua origem. Nada é aplicado sem a confirmação do usuário.</p>
+  <p>Exclusivamente para as funções da extensão: preencher e conferir a dosimetria, montar a pauta e a conferência das audiências, redigir termos e minutas e calcular a Meta/RCM. Antes de aplicar qualquer dado do eProc, a extensão mostra uma tela de conferência, e nada é aplicado sem a confirmação do usuário.</p>
 
   <h2>Onde os dados ficam e por quanto tempo</h2>
-  <p>O cálculo e a minuta ficam no armazenamento local do navegador do usuário, para que o trabalho não se perca ao fechar a aba. Esses dados permanecem até que o usuário limpe a dosimetria (botão "Limpar"), apague os dados do navegador ou remova a extensão.</p>
+  <table>
+    <thead><tr><th>Dado</th><th>Onde fica</th><th>Por quanto tempo</th></tr></thead>
+    <tbody>
+      <tr><td>Dosimetria: rascunhos, cálculos salvos e minutas</td><td>Somente neste navegador</td><td>Até o usuário limpar a dosimetria, apagar os dados do navegador ou remover a extensão</td></tr>
+      <tr><td>Pauta, conferências e termos de audiência</td><td>Neste navegador e na cópia cifrada do gabinete</td><td>Na nuvem, cerca de 15 dias depois da última gravação (a exclusão automática pode levar mais um ou dois dias); no navegador, até o usuário apagar</td></tr>
+      <tr><td>Meta/RCM</td><td>Neste navegador e na cópia cifrada do gabinete</td><td>Até o usuário apagar ou sobrescrever</td></tr>
+      <tr><td>Repositório de frases e modelos</td><td>Neste navegador e na cópia cifrada do gabinete</td><td>Até o usuário apagar ou sobrescrever</td></tr>
+    </tbody>
+  </table>
+  <p>Ao apagar um item no navegador, a cópia na nuvem é substituída por um marcador de exclusão, também cifrado.</p>
+
+  <h2>A cópia do gabinete na nuvem</h2>
+  <p>A cópia fica no Google Firebase (projeto <code>gabinete-cw</code>; as funções rodam em São Paulo, Brasil), usando Authentication, Firestore e Cloud Functions. Para protegê-la:</p>
+  <ul>
+    <li>cada item é cifrado no navegador com AES-GCM antes de sair dele, usando uma chave de dados aleatória. Essa chave de dados fica no servidor somente cifrada pela chave do gabinete, que o usuário digita e que nunca é enviada;</li>
+    <li>do servidor guarda-se apenas um verificador e um código de busca derivados da chave do gabinete, dos quais ela não pode ser recuperada;</li>
+    <li>o acesso é por identidade anônima do Firebase, sem nome nem e-mail, e só quem conhece a chave do gabinete passa a ser membro dele;</li>
+    <li>os identificadores dos itens são códigos derivados da chave de dados, que não revelam o número do processo;</li>
+    <li>ficam em claro, no servidor, apenas metadados técnicos: o nome do magistrado do gabinete, o identificador anônimo de cada dispositivo, o tipo do módulo, a data da gravação, o tamanho do conteúdo cifrado e contadores de tentativas de acesso.</li>
+  </ul>
+  <p>Quem conhece a chave do gabinete lê todo o conteúdo compartilhado. A chefe do gabinete pode trocar a chave e revogar dispositivos. Ao ser revogado, o dispositivo apaga de si os módulos compartilhados.</p>
 
   <h2>Compartilhamento</h2>
-  <p>A extensão não transmite, vende nem compartilha dados com terceiros. As únicas requisições de rede que ela faz para obter os dados são ao próprio eProc, a pedido do usuário.</p>
+  <p>A extensão não vende nem compartilha dados com terceiros. As únicas conexões que ela faz são ao eProc, a pedido do usuário, e aos serviços do Google Firebase descritos acima, que atuam como infraestrutura. Se o usuário digitar o telefone de uma parte ou testemunha e clicar em "WhatsApp", abre-se uma aba do WhatsApp com esse número, por ação dele.</p>
 
   <h2>Permissões solicitadas</h2>
   <ul>
-    <li><code>scripting</code>: executar a leitura da página do processo na aba do eProc, apenas quando o usuário clica em "Importar do eProc".</li>
-    <li>Acesso a <code>https://eproc1g.tjsc.jus.br/*</code>: localizar a aba do eProc com o processo aberto e ler o seu conteúdo com a sessão do usuário. Nenhum outro site é acessado.</li>
+    <li><code>scripting</code>: ler a página do eProc na aba que o usuário já tem aberta, só quando ele pede.</li>
+    <li><code>sidePanel</code>: exibir a extensão no painel lateral do navegador.</li>
+    <li><code>storage</code>: guardar localmente as preferências, os dados dos módulos e a chave de dados do gabinete.</li>
+    <li>Acesso a <code>https://eproc1g.tjsc.jus.br/*</code>: ler o processo e o Relatório de Audiências com a sessão do usuário.</li>
+    <li>Acesso a <code>identitytoolkit.googleapis.com</code>, <code>securetoken.googleapis.com</code>, <code>firestore.googleapis.com</code> e <code>southamerica-east1-gabinete-cw.cloudfunctions.net</code>: autenticação anônima e cópia cifrada do gabinete. Nenhum outro site é acessado.</li>
   </ul>
+
+  <h2>Seus direitos</h2>
+  <p>O usuário pode apagar os dados a qualquer momento pelos botões da própria extensão, limpando os dados do navegador ou removendo a extensão. Para pedir a exclusão da cópia do gabinete na nuvem, ou exercer os direitos previstos na Lei Geral de Proteção de Dados (Lei 13.709/2018), basta escrever para o contato abaixo.</p>
 
   <h2>Alterações</h2>
   <p>Se a forma de tratar dados mudar, esta página será atualizada antes da publicação da nova versão da extensão, com a nova data de vigência.</p>
