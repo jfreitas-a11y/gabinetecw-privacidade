@@ -24,23 +24,22 @@
 <body>
 <main>
   <h1>Política de privacidade da extensão GabineteCW</h1>
-  <p class="data">Vigente a partir de 20 de novembro de 2026 · versão 0.5.52 da extensão</p>
+  <p class="data">Vigente a partir de 26 de novembro de 2026 · versão 0.5.251 da extensão</p>
 
-  <p>A extensão GabineteCW é uma área de trabalho para gabinetes criminais do Tribunal de Justiça de Santa Catarina: calculadora e editor de dosimetria da pena, pauta e conferência de audiências, minutas de termos e Meta/RCM. Esta política explica quais dados a extensão acessa, onde eles ficam e por quanto tempo.</p>
+  <p>A extensão GabineteCW é uma área de trabalho para gabinetes criminais do Tribunal de Justiça de Santa Catarina: calculadora e editor de dosimetria da pena, prescrição, pauta e conferência de audiências, minutas de sentenças e termos (inclusive no próprio editor de minutas do eProc), Meta/RCM e ponto da equipe. Esta política explica quais dados a extensão acessa, onde eles ficam e por quanto tempo.</p>
 
   <h2>Quem é o responsável</h2>
   <p>O responsável pelo tratamento dos dados descritos aqui é Jonathan Marques de Freitas, desenvolvedor da extensão. O contato está no fim desta página.</p>
 
   <h2>Resumo</h2>
   <ul>
-    <li>Os dados de trabalho ficam no navegador do usuário. Uma cópia dos módulos compartilhados (pauta, conferências, termos, repositório de frases e modelos, e Meta/RCM) é guardada na nuvem, <strong>cifrada no próprio navegador</strong> antes do envio.</li>
+    <li>Os dados de trabalho ficam no navegador do usuário. Uma cópia dos módulos compartilhados (pauta, conferências, termos, repositório de frases e modelos, Meta/RCM e ponto) é guardada na nuvem, <strong>cifrada no próprio navegador</strong> antes do envio.</li>
     <li>A chave que protege essa cópia é a chave do gabinete. Ela não é enviada a nenhum servidor, e nem o desenvolvedor nem o provedor da nuvem conseguem ler o conteúdo.</li>
-    <li>Os dados das audiências somem da nuvem cerca de 15 dias depois da última gravação. A Meta/RCM e o repositório ficam até o usuário apagar ou sobrescrever.</li>
-    <li>Os dados da dosimetria ficam somente neste navegador e nunca vão para a nuvem.</li>
+    <li>Os dados das audiências somem da nuvem cerca de 15 dias depois da última gravação. A Meta/RCM, o repositório e o ponto ficam até o usuário apagar ou sobrescrever.</li>
+    <li>Os dados da dosimetria e da prescrição ficam somente neste navegador e nunca vão para a nuvem.</li>
     <li>Não há análise de uso, publicidade nem rastreamento, e nada é vendido ou compartilhado com terceiros.</li>
-    <li>A extensão só lê o eProc quando o usuário pede, e nunca escreve nada nele.</li>
+    <li>A extensão só acessa o eProc quando o usuário pede. Ela lê o processo e, por clique do usuário, escreve no editor de minutas do eProc (insere trechos, conclui a minuta e grava lembretes), com a sessão dele. Não escreve em nenhuma outra parte do eProc.</li>
     <li>Quando o usuário importa um processo, trechos das peças lidas (resposta à acusação, decisão saneadora, denúncia e outras) são enviados, pelo servidor do gabinete, à IA Gemini do Google Cloud (Vertex AI) para sugerir teses, perguntas às testemunhas, pontos controvertidos e dados da ficha do réu. O servidor não grava esse texto nem a resposta.</li>
-    <li>O número do processo é consultado na API pública do DataJud (CNJ) para completar a conferência.</li>
   </ul>
 
   <h2>Quais dados a extensão acessa</h2>
@@ -48,26 +47,31 @@
   <ul>
     <li>a capa do processo: número, classe, partes, idade, CPF e situação do réu;</li>
     <li>a lista de eventos, a denúncia, as certidões de nascimento e de antecedentes e as peças necessárias à conferência de audiências;</li>
-    <li>as linhas do Relatório de Audiências: processo, partes, magistrado, data e hora, tipo, situação, sala e observações.</li>
+    <li>as linhas do Relatório de Audiências: processo, partes, magistrado, data e hora, tipo, situação, sala e observações;</li>
+    <li>no editor de minutas do eProc, o texto da minuta aberta e os lembretes dela (texto, data e nome e login de quem escreveu), para mostrá-los no painel.</li>
   </ul>
-  <p>Esses documentos são baixados com a sessão que o usuário já tem aberta no eProc, usando apenas os links que a própria página contém, e são lidos na memória do navegador. Além disso, a extensão guarda o que o próprio usuário digita: cálculos, minutas, conferências, termos, anotações, contatos de partes e testemunhas, frases e modelos, e os dados de designação, descontos e produção da Meta/RCM.</p>
+  <p>Esses documentos são baixados com a sessão que o usuário já tem aberta no eProc, usando apenas os links que a própria página contém, e são lidos na memória do navegador. Além disso, a extensão guarda o que o próprio usuário digita: cálculos, minutas, conferências, termos, anotações, contatos de partes e testemunhas, frases e modelos, os dados de designação, descontos e produção da Meta/RCM e, no ponto, o nome, a matrícula, o e-mail e a meta semanal de cada pessoa da equipe com os horários de entrada e saída (digitados ou lidos da planilha de ponto do TJSC que o usuário escolhe).</p>
 
-  <h2>Leitura por inteligência artificial e consulta ao DataJud</h2>
+  <h2>O que a extensão escreve no eProc</h2>
+  <p>Só no editor de minutas, e só quando o usuário clica: insere na minuta os trechos que ele escolheu, conclui a minuta e grava ou desativa lembretes nela. Tudo é feito com a sessão que o usuário já tem aberta no eProc, como se ele mesmo digitasse. A extensão não protocola, não assina, não movimenta processos e não escreve em nenhuma outra tela do eProc.</p>
+
+  <h2>Leitura por inteligência artificial</h2>
   <p>Ao importar um processo do eProc, a extensão pode pedir uma leitura assistida por IA. Para isso envia ao servidor do gabinete (Cloud Functions, em São Paulo) apenas os trechos necessários: seções da resposta à acusação, o texto da decisão saneadora, páginas da denúncia e das certidões, os nomes dos réus e dos depoentes e as imputações. O servidor repassa esse conteúdo ao modelo Gemini no Vertex AI do Google Cloud, no mesmo projeto <code>gabinete-cw</code>, e devolve o resultado à extensão. Nem o texto enviado nem a resposta são gravados no servidor: ficam registrados apenas contadores de uso (número de leituras por pessoa, por dia e por mês, com limite de 15 por dia por pessoa) e, nos registros técnicos, um código derivado do conteúdo, o tamanho e o tempo da chamada. O resultado só é aplicado depois da conferência do usuário.</p>
   <p>O conteúdo enviado à IA sai do navegador sem a cifra do gabinete, porque o modelo precisa lê-lo. Ele é tratado pelo Google Cloud apenas para gerar a resposta, e não é usado para treinar modelos nem compartilhado com outros fins. A IA pode errar: o usuário confere o resultado antes de aplicá-lo. Se o usuário não clicar em Importar do eProc nem em ação de leitura equivalente, nada disso é enviado.</p>
-  <p>Ao importar, a extensão também consulta a API pública do DataJud do CNJ (<code>api-publica.datajud.cnj.jus.br</code>) com o número do processo, para completar classe, assuntos e movimentos. Nenhum outro dado do processo vai nessa consulta.</p>
 
   <h2>Para que os dados são usados</h2>
-  <p>Exclusivamente para as funções da extensão: preencher e conferir a dosimetria, montar a pauta e a conferência das audiências, redigir termos e minutas e calcular a Meta/RCM. Antes de aplicar qualquer dado do eProc, a extensão mostra uma tela de conferência, e nada é aplicado sem a confirmação do usuário.</p>
+  <p>Exclusivamente para as funções da extensão: preencher e conferir a dosimetria e a prescrição, montar a pauta e a conferência das audiências, redigir termos e minutas, calcular a Meta/RCM e acompanhar o ponto da equipe. Antes de aplicar qualquer dado do eProc, a extensão mostra uma tela de conferência, e nada é aplicado sem a confirmação do usuário.</p>
 
   <h2>Onde os dados ficam e por quanto tempo</h2>
   <table>
     <thead><tr><th>Dado</th><th>Onde fica</th><th>Por quanto tempo</th></tr></thead>
     <tbody>
-      <tr><td>Dosimetria: rascunhos, cálculos salvos e minutas</td><td>Somente neste navegador</td><td>Até o usuário limpar a dosimetria, apagar os dados do navegador ou remover a extensão</td></tr>
+      <tr><td>Dosimetria e prescrição: rascunhos, cálculos salvos e minutas</td><td>Somente neste navegador</td><td>Até o usuário limpar o cálculo, apagar os dados do navegador ou remover a extensão</td></tr>
       <tr><td>Pauta, conferências e termos de audiência</td><td>Neste navegador e na cópia cifrada do gabinete</td><td>Na nuvem, cerca de 15 dias depois da última gravação (a exclusão automática pode levar mais um ou dois dias); no navegador, até o usuário apagar</td></tr>
       <tr><td>Meta/RCM</td><td>Neste navegador e na cópia cifrada do gabinete</td><td>Até o usuário apagar ou sobrescrever</td></tr>
       <tr><td>Repositório de frases e modelos</td><td>Neste navegador e na cópia cifrada do gabinete</td><td>Até o usuário apagar ou sobrescrever</td></tr>
+      <tr><td>Ponto: pessoas da equipe e horários</td><td>Neste navegador e na cópia cifrada do gabinete</td><td>Até o usuário apagar ou sobrescrever</td></tr>
+      <tr><td>Lembretes da minuta</td><td>No próprio eProc (a extensão só lê e grava por ordem do usuário)</td><td>Pelas regras do eProc</td></tr>
     </tbody>
   </table>
   <p>Ao apagar um item no navegador, a cópia na nuvem é substituída por um marcador de exclusão, também cifrado.</p>
@@ -84,16 +88,16 @@
   <p>Quem conhece a chave do gabinete lê todo o conteúdo compartilhado. A chefe do gabinete pode trocar a chave e revogar dispositivos. Ao ser revogado, o dispositivo apaga de si os módulos compartilhados.</p>
 
   <h2>Compartilhamento</h2>
-  <p>A extensão não vende nem compartilha dados com terceiros. As únicas conexões que ela faz são ao eProc, a pedido do usuário, ao DataJud do CNJ, e aos serviços do Google Firebase e Google Cloud (Cloud Functions e Vertex AI) descritos acima, que atuam como infraestrutura. Se o usuário digitar o telefone de uma parte ou testemunha e clicar em "WhatsApp", abre-se uma aba do WhatsApp com esse número, por ação dele.</p>
+  <p>A extensão não vende nem compartilha dados com terceiros. As únicas conexões que ela faz são ao eProc, a pedido do usuário, e aos serviços do Google Firebase e Google Cloud (Cloud Functions e Vertex AI) descritos acima, que atuam como infraestrutura. Alguns botões apenas abrem uma aba nova, por ação do usuário, sem enviar dados do gabinete: "WhatsApp" abre o WhatsApp com o telefone que o usuário digitou para uma parte ou testemunha; "Suporte", no menu do ícone, abre o chat do desenvolvedor no Microsoft Teams; e a Meta/RCM abre a tabela de atos no SharePoint do TJSC.</p>
 
   <h2>Permissões solicitadas</h2>
   <ul>
-    <li><code>scripting</code>: ler a página do eProc na aba que o usuário já tem aberta, só quando ele pede.</li>
+    <li><code>scripting</code>: ler a página do eProc na aba que o usuário já tem aberta e, por clique dele, escrever no editor de minutas, só quando ele pede.</li>
+    <li><code>contextMenus</code>: criar os itens "Atualizar extensão", "Ativa no eProc" e "Suporte" no menu do botão direito sobre o ícone da extensão. Não lê páginas nem envia dados.</li>
     <li><code>sidePanel</code>: exibir a extensão no painel lateral do navegador.</li>
     <li><code>alarms</code>: pedir ao navegador, a cada 4 horas, que procure uma versão nova da extensão. Não envia dados.</li>
     <li><code>storage</code>: guardar localmente as preferências, os dados dos módulos e a chave de dados do gabinete.</li>
-    <li>Acesso a <code>https://eproc1g.tjsc.jus.br/*</code>: ler o processo e o Relatório de Audiências com a sessão do usuário.</li>
-    <li>Acesso a <code>https://api-publica.datajud.cnj.jus.br/*</code>: consultar o número do processo na API pública do CNJ.</li>
+    <li>Acesso a <code>https://eproc1g.tjsc.jus.br/*</code>: ler o processo e o Relatório de Audiências e escrever no editor de minutas, com a sessão do usuário.</li>
     <li>Acesso a <code>identitytoolkit.googleapis.com</code>, <code>securetoken.googleapis.com</code>, <code>firestore.googleapis.com</code> e <code>southamerica-east1-gabinete-cw.cloudfunctions.net</code>: autenticação anônima e cópia cifrada do gabinete. Nenhum outro site é acessado.</li>
   </ul>
 
